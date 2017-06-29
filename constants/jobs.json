@@ -1,0 +1,132 @@
+  {
+    "jobs": {
+      "astrologian": {
+        "name": "Astrologian",
+        "html": "http://na.finalfantasyxiv.com/jobguide/astrologian/",
+        "relatedActionGroupIds": [
+          "astrologian",
+          "healer"
+        ]
+      },
+      "bard": {
+        "name": "Bard",
+        "html": "http://na.finalfantasyxiv.com/jobguide/bard/",
+        "relatedActionGroupIds": [
+          "bard",
+          "ranged_dps"
+        ]
+      },
+      "black_mage": {
+        "name": "Black Mage",
+        "html": "http://na.finalfantasyxiv.com/jobguide/blackmage/",
+        "relatedActionGroupIds": [
+          "black_mage",
+          "caster_dps"
+        ]
+      },
+      "dark_knight": {
+        "name": "Dark Knight",
+        "html": "http://na.finalfantasyxiv.com/jobguide/darkknight/",
+        "relatedActionGroupIds": [
+          "dark_knight",
+          "tank"
+        ]
+      },
+      "dragoon": {
+        "name": "Dragoon",
+        "html": "http://na.finalfantasyxiv.com/jobguide/dragoon/",
+        "relatedActionGroupIds": [
+          "dragoon",
+          "melee_dps"
+        ]
+      },
+      "machinist": {
+        "id": 12,
+        "name": "Machinist",
+        "html": "http://na.finalfantasyxiv.com/jobguide/machinist/",
+        "relatedActionGroupIds": [
+          "machinist",
+          "ranged_dps"
+        ]
+      },
+      "monk": {
+        "name": "Monk",
+        "html": "http://na.finalfantasyxiv.com/jobguide/monk/",
+        "relatedActionGroupIds": [
+          "monk",
+          "melee_dps"
+        ]
+      },
+      "ninja": {
+        "name": "Ninja",
+        "html": "http://na.finalfantasyxiv.com/jobguide/ninja/",
+        "relatedActionGroupIds": [
+          "ninja",
+          "melee_dps"
+        ]
+      },
+      "paladin": {
+        "name": "Paladin",
+        "html": "http://na.finalfantasyxiv.com/jobguide/paladin/",
+        "relatedActionGroupIds": [
+          "paladin",
+          "tank"
+        ]
+      },
+      "red_mage": {
+        "name": "Red Mage",
+        "html": "http://na.finalfantasyxiv.com/jobguide/redmage/",
+        "relatedActionGroupIds": [
+          "red_mage",
+          "caster_dps"
+        ]
+      },
+      "samurai": {
+        "name": "Samurai",
+        "html": "http://na.finalfantasyxiv.com/jobguide/samurai/",
+        "relatedActionGroupIds": [
+          "samurai",
+          "melee_dps"
+        ]
+      },
+      "scholar": {
+        "name": "Scholar",
+        "html": "http://na.finalfantasyxiv.com/jobguide/scholar/",
+        "relatedActionGroupIds": [
+          "scholar",
+          "eos",
+          "selene",
+          "pets",
+          "healer"
+        ]
+      },
+      "summoner": {
+        "name": "Summoner",
+        "html": "http://na.finalfantasyxiv.com/jobguide/summoner/",
+        "relatedActionGroupIds": [
+          "summoner",
+          "garuda-egi",
+          "titan-egi",
+          "ifrit-egi",
+          "pets",
+          "caster_dps"
+        ]
+      },
+      "warrior": {
+        "name": "Warrior",
+        "html": "http://na.finalfantasyxiv.com/jobguide/warrior/",
+        "relatedActionGroupIds": [
+          "warrior",
+          "tank"
+        ]
+      },
+      "white_mage": {
+        "name": "White Mage",
+        "html": "http://na.finalfantasyxiv.com/jobguide/whitemage/",
+        "relatedActionGroupIds": [
+          "white_mage",
+          "healer"
+        ]
+      }
+    }
+  }
