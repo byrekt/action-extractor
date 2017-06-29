@@ -46,8 +46,8 @@ const skippableActions = [
   'Enchanted Moulinet'
 ]
 
-const downloadIcon = (uri, iconType, job, action) => {
-  const iconPath = `./icons/${iconType}/${job}_${action}.png`;
+const downloadIcon = (uri, iconType, job, category, action) => {
+  const iconPath = `./icons/${iconType}/${job}_${category}_${action}.png`;
   //console.log(`Attempting to download icon ${action}:`);
   // If we already have the icon, don't make another request;
   if (fs.existsSync(iconPath) && allowCache) {
@@ -92,27 +92,31 @@ Object.keys(jobs).forEach((jobName) => {
   try {
 
     const { document } = (new JSDOM(`${jobHtml}`)).window;
-    const actionRows = document.querySelectorAll('tr[id*="action"]');
+    const actionRows = document.querySelectorAll('tbody.job__tbody>tr');
 
     actionRows.forEach((actionRow) => {
       const action = {};
       const category = findAncestor(actionRow, 'job__content__wrapper').querySelector('.job__sub_title').textContent;
       const actionName = actionRow.querySelector('.skill__wrapper > p > strong').textContent;
-      console.log(category, actionName);
+      //console.log(category, actionName);
       const actionCast = (actionRow.querySelector('td.cast')) ? actionRow.querySelector('td.cast').textContent : '';
       const actionRecast = (actionRow.querySelector('td.recast')) ? actionRow.querySelector('td.recast').textContent : '';
       const actionCost = (actionRow.querySelector('td.cost')) ? actionRow.querySelector('td.cost').textContent : '';
       const tooltip = actionRow.querySelector('td.content').innerHTML || '';
-      const actionId = actionRow.getAttribute('id');
+      let actionId;
+      if (category.indexOf('Trait') > -1) return;
+      // If it has an ID, great...otherwise we need to generate one...we'll just use the action name as ID
+      if (actionRow.getAttribute('id')) {
+        actionId = actionRow.getAttribute('id');
+      } else {
+        actionId = actionName;
+      }
       const level = (actionRow.querySelector('td.jobClass')) ? actionRow.querySelector('td.jobClass').textContent : '';
       const imageUrl = getImageUrl(actionRow);
 
+      downloadIcon(imageUrl, 'actions', jobName, category, actionId);
 
-
-      downloadIcon(imageUrl, 'actions', jobName, actionId);
-
-
-      action.icon = `icons/actions/${jobName}_${actionId}.png`;
+      action.icon = `icons/actions/${jobName}_${category}_${actionId}.png`;
       action.name = actionName;
       action.category = category;
       action.cast = actionCast;
@@ -121,8 +125,7 @@ Object.keys(jobs).forEach((jobName) => {
       action.recast = actionRecast;
       action.tooltip = tooltip;
       action.job = jobName;
-      //console.log(action);
-      // Only return the action if it's usable
+
       if (skippableActions.indexOf(actionName) < 0) actionsData[`${jobName}_${category}_${actionId}`] = action;
     })
 
