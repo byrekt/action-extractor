@@ -233,7 +233,7 @@ Object.keys(jobs).forEach((jobName) => {
       job: jobName
     };
     actionsData[`${jobName}_obey`] = {
-      icon: 'icons/petManagement/steady.png',
+      icon: 'icons/petManagement/obey.png',
       name: 'Obey',
       category: 'Pet Management',
       tooltip: 'Order pet to attack, but refrain from using certain actions until ordered to do so.',
