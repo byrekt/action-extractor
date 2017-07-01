@@ -134,6 +134,173 @@ Object.keys(jobs).forEach((jobName) => {
   }
 });
 
+// Generate General Actions for each job
+Object.keys(jobs).forEach((jobName) => {
+
+  actionsData[`${jobName}_sprint`] = {
+    icon: 'icons/generalActions/sprint.png',
+    name: 'Sprint',
+    category: 'General Actions',
+    tooltip: 'Run around faster.',
+    job: jobName
+  };
+  actionsData[`${jobName}_limit_break`] = {
+    icon: 'icons/generalActions/limit.png',
+    name: 'Limit Break',
+    category: 'General Actions',
+    tooltip: 'Go all out.',
+    job: jobName
+  };
+  actionsData[`${jobName}_mount`] = {
+    icon: 'icons/generalActions/mount.png',
+    name: 'Mount Up',
+    category: 'General Actions',
+    tooltip: 'Summon a mount.',
+    job: jobName
+  };
+  actionsData[`${jobName}_return`] = {
+    icon: 'icons/generalActions/return.png',
+    name: 'Return',
+    category: 'General Actions',
+    tooltip: 'Use your hearthstone.',
+    job: jobName
+  };
+  actionsData[`${jobName}_teleport`] = {
+    icon: 'icons/generalActions/teleport.png',
+    name: 'Teleport',
+    category: 'General Actions',
+    tooltip: 'Open up the teleport menu.',
+    job: jobName
+  };
+
+  actionsData[`${jobName}_potion`] = {
+    icon: 'icons/generalActions/item.png',
+    name: 'Potion',
+    category: 'General Actions',
+    tooltip: 'This is a placeholder for a potion.',
+    job: jobName
+  };
+
+  // Add pet management
+  if (jobName === 'summoner' || jobName === 'scholar') {
+    actionsData[`${jobName}_away`] = {
+      icon: 'icons/petManagement/away.png',
+      name: 'Away',
+      category: 'Pet Management',
+      tooltip: 'Order pet to leave the battlefield',
+      job: jobName
+    };
+    actionsData[`${jobName}_heel`] = {
+      icon: 'icons/petManagement/heel.png',
+      name: 'Heel',
+      category: 'Pet Management',
+      tooltip: 'Order pet to follow behind you.',
+      job: jobName
+    };
+    actionsData[`${jobName}_place`] = {
+      icon: 'icons/petManagement/place.png',
+      name: 'Place',
+      category: 'Pet Management',
+      tooltip: 'Order pet to move to a specific location.',
+      job: jobName
+    };
+    actionsData[`${jobName}_stay`] = {
+      icon: 'icons/petManagement/stay.png',
+      name: 'Stay',
+      category: 'Pet Management',
+      tooltip: 'Order pet to remain where it is.',
+      job: jobName
+    };
+    actionsData[`${jobName}_guard`] = {
+      icon: 'icons/petManagement/guard.png',
+      name: 'Guard',
+      category: 'Pet Management',
+      tooltip: 'Order pet to refrain from attacking until you attack or are attacked.',
+      job: jobName
+    };
+    actionsData[`${jobName}_steady`] = {
+      icon: 'icons/petManagement/steady.png',
+      name: 'Steady',
+      category: 'Pet Management',
+      tooltip: 'Order pet to refrain from attacking until ordered to do so.',
+      job: jobName
+    };
+    actionsData[`${jobName}_sic`] = {
+      icon: 'icons/petManagement/sic.png',
+      name: 'Sic',
+      category: 'Pet Management',
+      tooltip: 'Order pet to attack.',
+      job: jobName
+    };
+    actionsData[`${jobName}_obey`] = {
+      icon: 'icons/petManagement/steady.png',
+      name: 'Obey',
+      category: 'Pet Management',
+      tooltip: 'Order pet to attack, but refrain from using certain actions until ordered to do so.',
+      job: jobName
+    };
+  }
+
+  switch (jobName) {
+    case 'paladin':
+    case 'warrior':
+    case 'dark_knight':
+      actionsData[`${jobName}_adrenaline_rush`] = {
+        icon: 'icons/adrenalineRush/aegis_boon.png',
+        name: 'Aegis Boon',
+        category: 'Adrenaline Rush',
+        tooltip: 'Temporarily reduces damage taken by all party members by 50%.',
+        job: jobName
+      }
+      break;
+    case 'white_mage':
+    case 'scholar':
+    case 'astrologian':
+      actionsData[`${jobName}_adrenaline_rush`] = {
+        icon: 'icons/adrenalineRush/empyrean_rain.png',
+        name: 'Empyrean Rain',
+        category: 'Adrenaline Rush',
+        tooltip: 'Restores 50% of own HP and the HP of all nearby party members, as well as cure all status effects.',
+        job: jobName
+      }
+      break;
+    case 'monk':
+    case 'dragoon':
+    case 'ninja':
+    case 'samurai':
+      actionsData[`${jobName}_adrenaline_rush`] = {
+        icon: 'icons/adrenalineRush/raw_destruction.png',
+        name: 'Raw Destruction',
+        category: 'Adrenaline Rush',
+        tooltip: 'Delivers an attack to a single target.',
+        job: jobName
+      }
+      break;
+    case 'bard':
+    case 'machinist':
+      actionsData[`${jobName}_adrenaline_rush`] = {
+        icon: 'icons/adrenalineRush/terminal_velocity.png',
+        name: 'Terminal Velocity',
+        category: 'Adrenaline Rush',
+        tooltip: 'Deals unaspected damage to all enemies in a straight line in front of the caster.',
+        job: jobName
+      }
+      break;
+    case 'black_mage':
+    case 'summoner':
+    case 'red_mage':
+      actionsData[`${jobName}_adrenaline_rush`] = {
+        icon: 'icons/adrenalineRush/cometeor.png',
+        name: 'Cometeor',
+        category: 'Deals unaspected damage to all enemies near point of impact.',
+        tooltip: 'Temporarily reduces damage taken by all party members by 50%.',
+        job: jobName
+      }
+      break;
+    default:
+  }
+});
+
 // Try to write the action data to the file system.
 try {
   fs.writeFileSync('./output/actions.json', JSON.stringify(actionsData));
