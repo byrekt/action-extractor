@@ -47,7 +47,7 @@ const skippableActions = [
 ]
 
 const downloadIcon = (uri, iconType, job, category, action) => {
-  const iconPath = `./icons/${iconType}/${job}_${category}_${action}.png`;
+  const iconPath = `./icons/${iconType}/${job.trim()}_${category.trim()}_${action.trim()}.png`;
   //console.log(`Attempting to download icon ${action}:`);
   // If we already have the icon, don't make another request;
   if (fs.existsSync(iconPath) && allowCache) {
@@ -76,7 +76,7 @@ const getImageUrl = (container) => {
 
 Object.keys(jobs).forEach((jobName) => {
   const job = jobs[jobName];
-  //if (jobName !== 'astrologian') return;
+  // if (jobName !== 'astrologian') return;
   console.log('\n \n--------Getting html content from ', job.html, ' :-------');
   const jobHtml = syncRequest('GET', job.html,
     {
@@ -88,17 +88,21 @@ Object.keys(jobs).forEach((jobName) => {
     }
   ).getBody().toString();
   console.log('------HTML content retrieved for ', jobName, '------\n\n');
-
+  // console.log(jobHtml)
   try {
 
     const { document } = (new JSDOM(`${jobHtml}`)).window;
-    const actionRows = document.querySelectorAll('tbody.job__tbody>tr');
-
+    console.log(document)
+    const actionRows = document.querySelectorAll('tbody.job__tbody>tr[id^="action"]');
+    // console.log(actionRows)
     actionRows.forEach((actionRow) => {
+      console.log('actionRow', actionRow)
       const action = {};
       const category = findAncestor(actionRow, 'job__content__wrapper').querySelector('.job__sub_title').textContent;
+      console.log('category', category, actionRow);
+      console.log(actionRow.querySelector('.skill__wrapper > p > strong'))
       const actionName = actionRow.querySelector('.skill__wrapper > p > strong').textContent;
-      //console.log(category, actionName);
+      console.log(category, actionName);
       const actionCast = (actionRow.querySelector('td.cast')) ? actionRow.querySelector('td.cast').textContent : '';
       const actionRecast = (actionRow.querySelector('td.recast')) ? actionRow.querySelector('td.recast').textContent : '';
       const actionCost = (actionRow.querySelector('td.cost')) ? actionRow.querySelector('td.cost').textContent : '';
@@ -116,7 +120,7 @@ Object.keys(jobs).forEach((jobName) => {
 
       downloadIcon(imageUrl, 'actions', jobName, category, actionId);
 
-      action.icon = `icons/actions/${jobName}_${category}_${actionId}.png`;
+      action.icon = `icons/actions/${jobName.trim()}_${category.trim()}_${actionId.trim()}.png`;
       action.name = actionName;
       action.category = category;
       action.cast = actionCast;
@@ -126,7 +130,7 @@ Object.keys(jobs).forEach((jobName) => {
       action.tooltip = tooltip;
       action.job = jobName;
 
-      if (skippableActions.indexOf(actionName) < 0) actionsData[`${jobName}_${category}_${actionId}`] = action;
+      if (skippableActions.indexOf(actionName) < 0) actionsData[`${jobName.trim()}_${category.trim()}_${actionId.trim()}`] = action;
     })
 
   } catch (e) {
